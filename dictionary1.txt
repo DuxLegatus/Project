@@ -1,0 +1,28 @@
+hello:გამარჯობა
+goodbye:ნახვამდის
+thank you:გმადლობ
+yes:დიახ
+no:არა
+good:კარგი
+bad:ცუდი
+food:საჭმელი
+house:სახლი
+friend:მეგობარი
+school:სკოლა
+book:წიგნი
+teacher:მასწავლებელი
+student:მოსწავლე
+city:ქალაქი
+country:ქვეყანა
+how are you?:როგორ ხარ?
+i am fine:მე კარგად ვარ
+what is your name?:რა გქვია?
+my name is...:მე მქვია...
+where are you from?:საიდან ხარ?
+i am from Georgia:მე ვარ საქართველოდან
+nice to meet you:სასიამოვნოა შენი გაცნობა
+can i help you?:შემიძლია დაგეხმარო?
+you're welcome:არაფრის
+white:თეთრი
+black:შავი
+house:სახლი
