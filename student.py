@@ -90,6 +90,15 @@ class Student(Person):
         except ValueError:
             print("please enter integer.")
     
+    @classmethod
+    def deleteStudent(self,roll_number):
+        for i in self.students:
+            if i.roll_number == roll_number:
+                self.students.remove(i)
+                return
+        print("no student found with that roll number")
+        
+
 
     @staticmethod
     def filter_by_grade(students):
@@ -98,6 +107,7 @@ class Student(Person):
             for i in ["A","B"]:
                 if i in student.grade:
                     print(student)
+
 
     @staticmethod
     def write_to_file(students):
@@ -127,10 +137,11 @@ if __name__ == "__main__":
            lambda:Student.find_student(),
            lambda:Student.update_grade(),
            lambda:Student.filter_by_grade(Student.students) ,
+           lambda:Student.deleteStudent(int(input("roll number to delete: "))),
            lambda:sys.exit()
     ]
     while True:
-            for i in ["0.add new student","1.see all students","2.find student by roll number","3.update grade","4.filter by grade","5.exit"]:
+            for i in ["0.add new student","1.see all students","2.find student by roll number","3.update grade","4.filter by grade","5.delete student","6.exit"]:
                 print(i)
             try:
                 action = int(input("your choice: "))
@@ -138,7 +149,7 @@ if __name__ == "__main__":
                 print("action should be int")
                 continue
             if 0 <= action < len(actions):
-                if action == 5:
+                if action == 6:
                     Student.write_to_file(Student.students)
                 actions[action]()
             else:
