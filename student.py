@@ -1,5 +1,8 @@
 import sys
 import os
+
+
+# პერსონ კლასი არის სტუდენტის parent კლასი და ამ კლასში ხდება სახელის ინიციალიზაცია
 class Person:
     def __init__(self, name):
         self.__name = name  
@@ -13,9 +16,11 @@ class Person:
         self.__name = name
 
 
+
+# სტუდენტ კლასში გაწერილია ძირითადი ფუნქციონალი
 class Student(Person):
-    students = [] 
-    def __init__(self, name, roll_number, grade):
+    students = [] # აქ ხდება სტუდენტის ობიექტების შენახვა
+    def __init__(self, name, roll_number, grade): # აქ ხდება უშუალოდ ინიციალიზაცია ყველა ატრიბუტის
         super().__init__(name)
         self.__roll_number = roll_number
         self.__grade = grade
@@ -40,6 +45,7 @@ class Student(Person):
     def __str__(self):
         return f"name: {self.name}, roll number: {self.roll_number}, grade: {self.grade}"
     
+    # ამ მეთოდით ხდება ნიშნის განახლება
     @classmethod
     def update_grade(cls):
         try:
@@ -54,6 +60,7 @@ class Student(Person):
         except ValueError:
             print("please enter integer.")
         
+    # ეს მეთოდი უბრალოდ სტუდენტ ლისტში არსებულ ყველა სტუდენტს პრინტავს
     @staticmethod
     def see_students(students):
         if students:
@@ -62,6 +69,9 @@ class Student(Person):
         else:
             print("no students found")
 
+
+    
+    # ამ მეთოდით ხდება სტუდენტის პოვნა roll_number-ით 
     @classmethod
     def find_student(cls):
         try:
@@ -75,6 +85,8 @@ class Student(Person):
         except ValueError:
             print("please enter integer.")
     
+
+    # ამ მეთოდით ხდება უშუალოდ ახალი სტუდენტის დამატება
     @classmethod
     def add_new_student(cls):
         try:
@@ -90,6 +102,8 @@ class Student(Person):
         except ValueError:
             print("please enter integer.")
     
+
+    # ამ მეთოდით ხდება სტუდენტის წაშლა 
     @classmethod
     def deleteStudent(self,roll_number):
         for i in self.students:
@@ -99,7 +113,7 @@ class Student(Person):
         print("no student found with that roll number")
         
 
-
+    #ამ მეთოდით ხდება "კარგი სტუდენტების" დაბეჭდვა
     @staticmethod
     def filter_by_grade(students):
         print("students with good grades: ")
@@ -108,14 +122,14 @@ class Student(Person):
                 if i in student.grade:
                     print(student)
 
-
+    # ეს მეთოდი გამოყენებულია როდესაც მომხმარებელი გადაწყვეტს რომ პროგრამა გამორთოს და ის ანახლებს students.txt
     @staticmethod
     def write_to_file(students):
         with open("students.txt","w") as f:
                 for i in students:
                     f.write(f"{i.name}:{i.roll_number}:{i.grade}\n")
                 
-
+    # ეს ფუნქცია გამოიყენება პროგრამის დასაწყისში და მოაქვს ინფორმაცია students.txt-დან
     @staticmethod
     def read_file(students):
         with open("students.txt","r") as file:
@@ -131,7 +145,7 @@ class Student(Person):
 
 if __name__ == "__main__":
     Student.read_file(Student.students)
-    actions = [
+    actions = [ # აქ ყველა ფუნქცია დიქტში მაქვს ჩაწერილი
            lambda:Student.add_new_student(),
            lambda:Student.see_students(Student.students),
            lambda:Student.find_student(),
@@ -140,6 +154,8 @@ if __name__ == "__main__":
            lambda:Student.deleteStudent(int(input("roll number to delete: "))),
            lambda:sys.exit()
     ]
+
+    # და აქ არის while loop რომელშიც მომხმარებელი ირჩევს თუ რისი გაკეთება უნდა.
     while True:
             for i in ["0.add new student","1.see all students","2.find student by roll number","3.update grade","4.filter by grade","5.delete student","6.exit"]:
                 print(i)
