@@ -1,5 +1,6 @@
 import sys
 import os
+import re
 
 
 # პერსონ კლასი არის სტუდენტის parent კლასი და ამ კლასში ხდება სახელის ინიციალიზაცია
@@ -92,7 +93,10 @@ class Student(Person):
         try:
             name = input("name: ").strip()
             roll_number = int(input("roll_number: "))
-            grade = input("grade: ").strip()
+            grade = input("grade: ").strip().upper()
+            if not re.match(r'^(?:[A-DF])[+-]?$',grade):
+                print("not right grade")
+                return
             for student in cls.students:
                 if student.roll_number == roll_number:
                     print("Student with same roll number is already registered.")
@@ -170,5 +174,4 @@ if __name__ == "__main__":
                 actions[action]()
             else:
                 print("not right option")
-
-        
+name2 = Person("asfsaf")
